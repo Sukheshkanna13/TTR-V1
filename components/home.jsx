@@ -135,7 +135,7 @@ const HomeScreen = ({ go, setSearchCtx }) => {
               <div style={{ maxWidth: 720 }}>
                 <div className="tt-eyebrow">Uncover destinations</div>
                 <h2 className="tt-h2" style={{ marginTop: 14, marginBottom: 14 }}>Featured journeys</h2>
-                <p style={{ margin: 0, fontSize: 16, lineHeight: 1.55 }}>Rich visuals, crisp typography, and smooth motion — designed to feel premium without feeling heavy.</p>
+                <p style={{ margin: 0, fontSize: 16, lineHeight: 1.55 }}>Comming Soon..</p>
               </div>
               <button className="tt-btn-link" style={{ color: '#fff' }} onClick={() => go('search')}>Explore stays →</button>
             </div>
