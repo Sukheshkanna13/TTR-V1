@@ -159,6 +159,7 @@ const Navbar = ({ screen, go }) => {
     { id: 'search', label: 'Stays' },
     { id: 'things', label: 'Things to do' },
     { id: 'retreat', label: 'Nature Retreat' },
+    { id: 'events', label: 'Events' },
   ];
   const isActive = (id) => screen === id || (id === 'search' && ['home', 'property', 'book', 'wa-sent'].includes(screen));
   const close = () => setMenuOpen(false);

@@ -15,6 +15,7 @@
 <script type="text/babel" src="components/booking.jsx"></script>
 <script type="text/babel" src="components/account.jsx"></script>
 <script type="text/babel" src="components/retreat.jsx"></script>
+<script type="text/babel" src="components/events.jsx"></script>
 <script type="text/babel" src="tweaks-panel.jsx"></script>
 </head>
 <body>
@@ -71,7 +72,7 @@ function App() {
         {screen === 'loyalty'  && <LoyaltyScreen go={go}/>}
         {screen === 'things'   && <ThingsScreen go={go}/>}
         {screen === 'retreat'  && <NatureRetreatScreen go={go}/>}
-        {screen === 'events'   && <EventsScreen go={go}/>}
+        {screen === 'events'   && <EventsPage go={go}/>}
       </main>
       <Footer/>
       <WhatsAppFab/>
