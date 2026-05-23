@@ -19,18 +19,18 @@ const HomeScreen = ({ go, setSearchCtx }) => {
             {/* LEFT */}
             <div>
               <h1 className="tt-display" style={{ marginTop: 0 }}>
-                Explore stays that feel <span className="tt-italic-soft" style={{ color: 'var(--accent)' }}>modern,</span><br/>
+                Explore stays that feel <span className="tt-italic-soft" style={{ color: 'var(--accent)' }}>modern,</span><br />
                 calm, and unmistakably Indian.
               </h1>
               <p className="tt-sub" style={{ marginTop: 28, maxWidth: 560 }}>
                 Inspired by the spirit of Temple and Towns — now as resorts. Clean design, smooth booking, and a platform built to scale.
               </p>
               <div style={{ display: 'flex', gap: 14, marginTop: 36, flexWrap: 'wrap' }}>
-                <button className="tt-btn tt-btn-primary" onClick={submit}>Find a stay <Ico name="arrow" size={14}/></button>
+                <button className="tt-btn tt-btn-primary" onClick={submit}>Find a stay <Ico name="arrow" size={14} /></button>
                 <a href="https://api.whatsapp.com/send/?phone=918553441449&text=Hi%2C+I%27d+like+to+chat+about+Temple+and+Towns+Resorts.&type=phone_number&app_absent=0"
-                   target="_blank" rel="noopener noreferrer"
-                   style={{ display:'inline-flex', alignItems:'center', gap:8, padding:'14px 26px', background:'var(--whatsapp)', color:'#fff', borderRadius:'var(--pill)', fontSize:15, fontWeight:500, textDecoration:'none' }}>
-                  <Ico name="wa" size={15}/> Chat with us
+                  target="_blank" rel="noopener noreferrer"
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 26px', background: 'var(--whatsapp)', color: '#fff', borderRadius: 'var(--pill)', fontSize: 15, fontWeight: 500, textDecoration: 'none' }}>
+                  <Ico name="wa" size={15} /> Chat with us
                 </a>
               </div>
             </div>
@@ -38,13 +38,13 @@ const HomeScreen = ({ go, setSearchCtx }) => {
             {/* RIGHT — shorter featured photo card, no search inside */}
             <div className="tt-featured-card" style={{ aspectRatio: 'unset', height: 280 }}>
               <img src="images/hero_resort.png" alt="Featured Resort" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(10,22,40,0.35) 0%, rgba(10,22,40,0.05) 40%, rgba(10,22,40,0.55) 100%)', zIndex: 2 }}/>
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(10,22,40,0.35) 0%, rgba(10,22,40,0.05) 40%, rgba(10,22,40,0.55) 100%)', zIndex: 2 }} />
               <span className="tt-featured-label">Featured</span>
               <span className="tt-featured-meta">New destinations weekly</span>
               <div className="tt-featured-tags" style={{ gridTemplateColumns: '1fr 1fr', paddingTop: 32 }}>
                 {[
-                  {lbl:'Temple stays', name:'Sacred circuits'},
-                  {lbl:'Town escapes', name:'Slow travel'},
+                  { lbl: 'Temple stays', name: 'Sacred circuits' },
+                  { lbl: 'Town escapes', name: 'Slow travel' },
                 ].map(t => (
                   <div key={t.name} className="tt-featured-tile" onClick={() => go('search')}>
                     <div className="lbl">{t.lbl}</div>
@@ -74,11 +74,11 @@ const HomeScreen = ({ go, setSearchCtx }) => {
             </div>
             <div className="tt-search-cell">
               <span className="lbl">Check in</span>
-              <input type="date" value={checkIn} onChange={e => setCheckIn(e.target.value)}/>
+              <input type="date" value={checkIn} onChange={e => setCheckIn(e.target.value)} />
             </div>
             <div className="tt-search-cell">
               <span className="lbl">Check out</span>
-              <input type="date" value={checkOut} onChange={e => setCheckOut(e.target.value)}/>
+              <input type="date" value={checkOut} onChange={e => setCheckOut(e.target.value)} />
             </div>
             <div className="tt-search-cell">
               <span className="lbl">Guests</span>
@@ -87,10 +87,12 @@ const HomeScreen = ({ go, setSearchCtx }) => {
                 <option>2 guests · 1 room</option>
                 <option>3 guests · 1 room</option>
                 <option>4 guests · 2 rooms</option>
+                <option> more </option>
+
               </select>
             </div>
             <button className="tt-search-go" onClick={submit}>
-              <Ico name="search" size={15}/> Search
+              <Ico name="search" size={15} /> Search
             </button>
           </div>
         </div>
@@ -101,23 +103,23 @@ const HomeScreen = ({ go, setSearchCtx }) => {
         <div className="tt-page">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 40, gap: 24, flexWrap: 'wrap' }}>
             <div style={{ maxWidth: 620 }}>
-              <h2 className="tt-h2" style={{ margin: 0 }}>Moments from our stays</h2>
-              <p style={{ marginTop: 12, color: 'var(--text-soft)', fontSize: 16 }}>Temple towns, coastlines, and community — real photography from our journeys.</p>
+              <h2 className="tt-h2" style={{ margin: 0 }}>Moments from our Vacation imagined by AI</h2>
+              <p style={{ marginTop: 12, color: 'var(--text-soft)', fontSize: 16 }}>Temple towns, coastlines, and community</p>
             </div>
             <button className="tt-btn-link" onClick={() => go('search')}>See all stays →</button>
           </div>
           <div className="tt-moments-grid">
             {[
-              {label:'pottery',          cap:'Pottery, Auroville'},
-              {label:'temple-courtyard', cap:'Sandalwood courtyards'},
-              {label:'sea-evening',      cap:'Promenade, dusk'},
-              {label:'street-food',      cap:'White Town evenings'},
-              {label:'morning-yoga',     cap:'Yoga at Auroville'},
-              {label:'banyan-tree',      cap:'Nature walks'},
+              { label: 'pottery', cap: 'Pottery, Auroville' },
+              { label: 'temple-courtyard', cap: 'Sandalwood courtyards' },
+              { label: 'sea-evening', cap: 'Promenade, dusk' },
+              { label: 'street-food', cap: 'White Town evenings' },
+              { label: 'morning-yoga', cap: 'Yoga at Auroville' },
+              { label: 'banyan-tree', cap: 'Nature walks' },
             ].map(m => (
               <div key={m.label} className="tt-moment">
                 <img src={`images/${m.label}.png`} alt={m.cap} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.45) 100%)', zIndex: 1 }}/>
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.45) 100%)', zIndex: 1 }} />
                 <span className="tt-moment-cap">{m.cap}</span>
               </div>
             ))}
@@ -139,18 +141,18 @@ const HomeScreen = ({ go, setSearchCtx }) => {
             </div>
             <div className="tt-journey-grid">
               {[
-                {cat:'Retreat', title:'Auroville Nature', loc:'Auroville',  label:'nature'},
-                {cat:'Heritage', title:'White Town walk', loc:'Pondicherry',      label:'coastal'},
-                {cat:'Culture', title:'Local Artisans',   loc:'Auroville',   label:'temple'},
+                { cat: 'Retreat', title: 'Mangroove', loc: 'Pondicherry', label: 'nature' },
+                { cat: 'Heritage', title: 'Coastline', loc: 'White-Town', label: 'coastal' },
+                { cat: 'Culture', title: 'Culture', loc: 'Auroville', label: 'temple' },
               ].map(j => (
                 <div key={j.title} className="tt-journey">
                   <img src={`images/${j.label}.png`} alt={j.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.7) 100%)', zIndex: 1 }}/>
+                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.7) 100%)', zIndex: 1 }} />
                   <span className="tt-journey-cat">{j.cat}</span>
                   <div className="tt-journey-body">
                     <div className="tt-journey-title">{j.title}</div>
                     <div className="tt-journey-loc">{j.loc}</div>
-                    <div className="tt-journey-link">View story <Ico name="arrow" size={14}/></div>
+                    <div className="tt-journey-link">Comming Soon <Ico name="arrow" size={14} /></div>
                   </div>
                 </div>
               ))}
@@ -173,7 +175,7 @@ const HomeScreen = ({ go, setSearchCtx }) => {
             {TT_DATA.properties.slice(0, 3).map(p => (
               <div key={p.id} className="tt-card" onClick={() => go('property', { propertyId: p.id })}>
                 <div className="tt-card-media">
-                  <img src={`images/${p.id}.png`} alt={p.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                  <img src={p.cover} alt={p.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                   <div className="tt-card-tags">
                     <span className="tt-tag">{p.city === 'pondicherry' ? 'White Town' : 'Auroville'}</span>
                     <span className="tt-tag tt-tag-dark">★ {p.rating}</span>
@@ -230,23 +232,23 @@ const HomeScreen = ({ go, setSearchCtx }) => {
             <div>
               <div className="tt-eyebrow" style={{ color: 'rgba(255,255,255,0.6)' }}>Coming Soon</div>
               <h2 className="tt-h1" style={{ color: '#fff', marginTop: 16, marginBottom: 16 }}>
-                Wayfarer Rewards.<br/>
+                Wayfarer Rewards.<br />
                 <span className="tt-italic-soft" style={{ color: '#a4a6f0' }}>Stay more, earn more.</span>
               </h2>
               <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.78)', lineHeight: 1.55, maxWidth: 480, margin: 0 }}>
                 Earn points every night. Unlock early check-ins, room upgrades, and exclusive rates. Launching soon — our earliest guests earn first.
               </p>
               <a href="https://api.whatsapp.com/send/?phone=918553441449&text=Hi%2C+I%27d+like+to+chat+about+Temple+and+Towns+Resorts.&type=phone_number&app_absent=0"
-                 target="_blank" rel="noopener noreferrer"
-                 style={{ display:'inline-flex', alignItems:'center', gap:8, marginTop:32, padding:'18px 34px', background:'#fff', color:'#0a1628', borderRadius:'var(--pill)', fontSize:16, fontWeight:600, textDecoration:'none' }}>
-                <Ico name="wa" size={15}/> Join the waitlist
+                target="_blank" rel="noopener noreferrer"
+                style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginTop: 32, padding: '18px 34px', background: '#fff', color: '#0a1628', borderRadius: 'var(--pill)', fontSize: 16, fontWeight: 600, textDecoration: 'none' }}>
+                <Ico name="wa" size={15} /> Join the waitlist
               </a>
             </div>
             <div>
               {[
-                { tier: 'Bronze', range: '0 – 499 pts',    perks: 'Base rate + welcome gift' },
+                { tier: 'Bronze', range: '0 – 499 pts', perks: 'Base rate + welcome gift' },
                 { tier: 'Silver', range: '500 – 1999 pts', perks: '5% off + early check-in' },
-                { tier: 'Gold',   range: '2000+ pts',      perks: '10% off + room upgrades' },
+                { tier: 'Gold', range: '2000+ pts', perks: '10% off + room upgrades' },
               ].map(t => (
                 <div key={t.tier} style={{ borderTop: '1px solid rgba(255,255,255,0.12)', padding: '20px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <div>

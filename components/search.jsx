@@ -59,9 +59,9 @@ const SearchScreen = ({ go, searchCtx, setSearchCtx }) => {
 
       <div style={{ display: 'grid', gap: 20 }}>
         {matches.map(p => (
-          <div key={p.id} className="tt-card" style={{ flexDirection: 'row', display: 'flex', alignItems: 'stretch' }} onClick={() => go('property', { propertyId: p.id })}>
+          <div key={p.id} className="tt-card" style={{ flexDirection: 'row', display: 'flex', alignItems: 'stretch', maxHeight: 280 }} onClick={() => go('property', { propertyId: p.id })}>
             <div style={{ flex: '0 0 380px', position: 'relative', borderRadius: 4, overflow: 'hidden' }}>
-              <StripeImg label={p.placeholder} tone={p.tone} ratio="auto"/>
+              <img src={p.cover} alt={p.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               <div className="tt-card-tags">
                 <span className="tt-tag">{p.city === 'pondicherry' ? 'White Town' : 'Auroville'}</span>
                 <span className="tt-tag tt-tag-dark">★ {p.rating}</span>
@@ -100,9 +100,12 @@ const PropertyScreen = ({ go, params, searchCtx, startBooking }) => {
   const property = TT_DATA.properties.find(p => p.id === params.propertyId);
   const rooms = TT_DATA.rooms[property.id] || [];
   const [selectedRoom, setSelectedRoom] = useState(rooms[0]?.id);
+  const [showGallery, setShowGallery] = useState(false);
   const room = rooms.find(r => r.id === selectedRoom);
   const onBook = () => startBooking({ property, room });
   const nights = tt.nightsBetween(searchCtx?.checkIn, searchCtx?.checkOut) || 3;
+  const imgs = property.images || [];
+  const galleryImages = imgs.slice(5);
 
   return (
     <div className="tt-page" style={{ paddingTop: 32, paddingBottom: 96 }}>
@@ -124,16 +127,31 @@ const PropertyScreen = ({ go, params, searchCtx, startBooking }) => {
       </div>
 
       <div className="tt-property-gallery" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: 8, height: 520, borderRadius: 6, overflow: 'hidden' }}>
-        <StripeImg label={property.placeholder} tone={property.tone} ratio="auto"/>
-        <div style={{ display: 'grid', gridTemplateRows: '1fr 1fr', gap: 8 }}>
-          <StripeImg label="bedroom" tone="oklch(0.9 0.04 220)" ratio="auto"/>
-          <StripeImg label="bathroom" tone="oklch(0.92 0.03 200)" ratio="auto"/>
+        <div style={{ gridRow: '1 / 3', overflow: 'hidden' }}>
+          <img src={imgs[0] || property.cover} alt={property.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
         </div>
-        <div style={{ display: 'grid', gridTemplateRows: '1fr 1fr', gap: 8 }}>
-          <StripeImg label="lobby" tone="oklch(0.91 0.04 245)" ratio="auto"/>
-          <StripeImg label="garden" tone="oklch(0.93 0.03 215)" ratio="auto"/>
-        </div>
+        {imgs.slice(1, 5).map((src, i) => (
+          <div key={i} style={{ overflow: 'hidden' }}>
+            <img src={src} alt={`${property.name} ${i+2}`} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+          </div>
+        ))}
       </div>
+      {galleryImages.length > 0 && (
+        <div style={{ marginTop: 12, textAlign: 'right' }}>
+          <button className="tt-btn tt-btn-ghost tt-btn-sm" onClick={() => setShowGallery(v => !v)}>
+            {showGallery ? 'Hide photos' : `Show all ${imgs.length} photos`}
+          </button>
+        </div>
+      )}
+      {showGallery && (
+        <div style={{ marginTop: 16, display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8, borderRadius: 6, overflow: 'hidden' }}>
+          {galleryImages.map((src, i) => (
+            <div key={i} style={{ aspectRatio: '4/3', overflow: 'hidden', borderRadius: 4 }}>
+              <img src={src} alt={`${property.name} gallery ${i+6}`} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            </div>
+          ))}
+        </div>
+      )}
 
       <div className="tt-property-layout" style={{ display: 'grid', gridTemplateColumns: '1.6fr 1fr', gap: 64, marginTop: 64 }}>
         <div>
@@ -164,7 +182,7 @@ const PropertyScreen = ({ go, params, searchCtx, startBooking }) => {
             {rooms.map(r => (
               <label key={r.id} style={{ display: 'grid', gridTemplateColumns: '140px 1fr auto', gap: 24, alignItems: 'center', padding: 16, borderRadius: 6, border: `1px solid ${selectedRoom === r.id ? 'var(--ink)' : 'var(--line)'}`, background: selectedRoom === r.id ? 'var(--bg-soft)' : '#fff', cursor: 'pointer' }}>
                 <div style={{ borderRadius: 4, overflow: 'hidden', height: 96 }}>
-                  <StripeImg label="bedroom" tone={`oklch(0.9 0.04 ${210 + rooms.indexOf(r)*8})`} ratio="auto"/>
+                  <img src={imgs[rooms.indexOf(r)] || imgs[0] || property.cover} alt={r.type} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                 </div>
                 <div>
                   <div style={{ fontWeight: 600, fontSize: 17 }}>{r.type}</div>

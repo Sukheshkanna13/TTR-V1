@@ -29,8 +29,11 @@ window.TT_DATA = {
       rating: 4.9,
       reviews: 112,
       from: 'Request to book',
-      placeholder: 'colonial villa exterior, courtyard',
-      tone: 'oklch(0.88 0.04 230)',
+      cover: 'images/1F-1BHK/1.jpeg',
+      images: [
+        'images/1F-1BHK/1.jpeg', 'images/1F-1BHK/2.jpeg', 'images/1F-1BHK/3.jpeg', 'images/1F-1BHK/4.jpeg', 'images/1F-1BHK/5.jpeg',
+        'images/1F-1BHK/8.jpeg', 'images/1F-1BHK/10.jpeg', 'images/1F-1BHK/12.jpeg', 'images/1F-1BHK/14.jpeg', 'images/1F-1BHK/15.jpeg', 'images/1F-1BHK/16.jpeg',
+      ],
     },
     {
       id: 'p2',
@@ -41,8 +44,12 @@ window.TT_DATA = {
       rating: 4.8,
       reviews: 95,
       from: 'Request to book',
-      placeholder: 'seafront balcony view, palms',
-      tone: 'oklch(0.9 0.04 215)',
+      cover: 'images/2F-1BHK/1.jpeg',
+      images: [
+        'images/2F-1BHK/1.jpeg', 'images/2F-1BHK/2.jpeg', 'images/2F-1BHK/3.jpeg', 'images/2F-1BHK/4.jpeg', 'images/2F-1BHK/5.jpeg',
+        'images/2F-1BHK/6.jpeg', 'images/2F-1BHK/7.jpeg', 'images/2F-1BHK/8.jpeg', 'images/2F-1BHK/9.jpeg', 'images/2F-1BHK/10.jpeg',
+        'images/2F-1BHK/11.jpeg', 'images/2F-1BHK/12.jpeg', 'images/2F-1BHK/14.jpeg', 'images/2F-1BHK/15.jpeg', 'images/2F-1BHK/16.jpeg', 'images/2F-1BHK/17.jpeg',
+      ],
     },
     {
       id: 'p3',
@@ -53,8 +60,12 @@ window.TT_DATA = {
       rating: 4.9,
       reviews: 144,
       from: 'Request to book',
-      placeholder: 'garden hotel courtyard',
-      tone: 'oklch(0.88 0.04 200)',
+      cover: 'images/1F-2BHK/1.jpeg',
+      images: [
+        'images/1F-2BHK/1.jpeg', 'images/1F-2BHK/2.jpeg', 'images/1F-2BHK/3.jpeg', 'images/1F-2BHK/4.jpeg', 'images/1F-2BHK/5.jpeg',
+        'images/1F-2BHK/6.jpeg', 'images/1F-2BHK/7.jpeg', 'images/1F-2BHK/8.jpeg', 'images/1F-2BHK/9.jpeg', 'images/1F-2BHK/10.jpeg',
+        'images/1F-2BHK/11.jpeg', 'images/1F-2BHK/12.jpeg', 'images/1F-2BHK/13.jpeg', 'images/1F-2BHK/14.jpeg',
+      ],
     },
     {
       id: 'p4',
@@ -65,8 +76,14 @@ window.TT_DATA = {
       rating: 5.0,
       reviews: 210,
       from: 'Request to book',
-      placeholder: 'resort',
-      tone: 'oklch(0.88 0.04 145)',
+      cover: 'images/Auroville/1.jpeg',
+      images: [
+        'images/Auroville/1.jpeg', 'images/Auroville/2.jpeg', 'images/Auroville/3.jpeg', 'images/Auroville/4.jpeg', 'images/Auroville/5.jpeg',
+        'images/Auroville/6.jpeg', 'images/Auroville/7.jpeg', 'images/Auroville/8.jpeg', 'images/Auroville/9.jpeg', 'images/Auroville/10.jpeg',
+        'images/Auroville/11.jpeg', 'images/Auroville/12.jpeg', 'images/Auroville/13.jpeg', 'images/Auroville/14.jpeg', 'images/Auroville/15.jpeg',
+        'images/Auroville/16.jpeg', 'images/Auroville/17.jpeg', 'images/Auroville/18.jpeg', 'images/Auroville/19.jpeg', 'images/Auroville/20.jpeg',
+        'images/Auroville/21.jpeg', 'images/Auroville/22.jpeg',
+      ],
     },
   ],
   rooms: {
@@ -85,8 +102,8 @@ window.TT_DATA = {
     ],
   },
   reviews: [
-    { name: 'Ananya R.', tier: 'Gold', rating: 5, text: 'The nature retreat was incredibly peaceful. Exactly what I needed.', when: 'Two weeks ago' },
-    { name: 'Marcus L.', tier: 'Silver', rating: 5, text: 'Booking via WhatsApp was fast and the host called personally to confirm.', when: 'Last month' },
-    { name: 'Priya S.', tier: 'Bronze', rating: 4, text: 'Quiet, beautiful location. The White town stay is exceptionally close to the beach.', when: 'Last month' },
+    { name: 'Abhijith', rating: 5, text: 'It was a great stay, and I am really happy with my experience.', when: '2026' },
+    { name: 'Johnny', rating: 5, text: ' Stay was amazing Dev was great and helped us with local recommendations Even checking on us mid stay if everything went well overall great stay great locality restaurants are very close by and there’s a rental place right outside the stay and the beach is also pretty close from here, Again thank you for an amazing stay', when: '2026' },
+    { name: 'Bhumika', rating: 5, text: 'The stay was absolutely great! The place is beautiful and felt just like home. All the required amenities were available and well-maintained. The location is perfect, with the beach at a walkable distance which made the experience even better. The host was very responsive, friendly, and always ready to help. Highly recommended!', when: '2026' },
   ]
 };
