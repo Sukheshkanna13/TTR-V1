@@ -2,17 +2,21 @@
 const { useState, useMemo } = React;
 
 // ---------- SEARCH ----------
-const SearchScreen = ({ go, searchCtx }) => {
+const SearchScreen = ({ go, searchCtx, setSearchCtx }) => {
   const [cityFilter, setCityFilter] = useState(searchCtx?.city || 'Pondicherry');
-  const [maxPrice, setMaxPrice] = useState(15000);
-  const [activeAmenity, setActiveAmenity] = useState('All');
-  const [sortBy, setSortBy] = useState('Recommended');
+  const [checkIn, setCheckIn] = useState(searchCtx?.checkIn || '2026-05-12');
+  const [checkOut, setCheckOut] = useState(searchCtx?.checkOut || '2026-05-15');
+  const [guests, setGuests] = useState(searchCtx?.guests || '2 guests · 1 room');
+  
   const matches = useMemo(() => TT_DATA.properties.filter(p => {
-    if (cityFilter === 'Both cities') return p.from <= maxPrice;
-    return p.city === cityFilter.toLowerCase() && p.from <= maxPrice;
-  }).sort((a,b) => sortBy === 'Price' ? a.from - b.from : sortBy === 'Rating' ? b.rating - a.rating : 0),
-  [cityFilter, maxPrice, sortBy]);
-  const amenities = ['All', 'Pool', 'Sea view', 'Pet friendly', 'Workspace', 'Breakfast'];
+    if (cityFilter === 'Both cities') return true;
+    return p.city === cityFilter.toLowerCase();
+  }).sort((a,b) => b.rating - a.rating),
+  [cityFilter]);
+  
+  const updateSearch = () => {
+    if (setSearchCtx) setSearchCtx({ city: cityFilter, checkIn, checkOut, guests });
+  };
 
   return (
     <div className="tt-page" style={{ paddingTop: 56, paddingBottom: 96 }}>
@@ -25,32 +29,31 @@ const SearchScreen = ({ go, searchCtx }) => {
         <div className="tt-search-cell">
           <span className="lbl">Where</span>
           <select value={cityFilter} onChange={e => setCityFilter(e.target.value)}>
-            <option>Pondicherry</option><option>Bengaluru</option><option>Both cities</option>
+            <option>Pondicherry</option><option>Auroville</option><option>Both cities</option>
           </select>
         </div>
-        <div className="tt-search-cell"><span className="lbl">Check in</span><span className="val">{tt.fmtDate(searchCtx?.checkIn || '2026-05-12')}</span></div>
-        <div className="tt-search-cell"><span className="lbl">Check out</span><span className="val">{tt.fmtDate(searchCtx?.checkOut || '2026-05-15')}</span></div>
-        <div className="tt-search-cell"><span className="lbl">Guests</span><span className="val">{searchCtx?.guests || '2 guests · 1 room'}</span></div>
-        <button className="tt-search-go"><Ico name="search" size={14}/> Update</button>
-      </div>
-
-      <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginTop: 24, flexWrap: 'wrap' }}>
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-          {amenities.map(a => (
-            <span key={a} onClick={() => setActiveAmenity(a)} className={`tt-chip ${activeAmenity === a ? 'tt-chip-active' : ''}`}>{a}</span>
-          ))}
+        <div className="tt-search-cell">
+          <span className="lbl">Check in</span>
+          <input type="date" value={checkIn} onChange={e => setCheckIn(e.target.value)}/>
         </div>
-        <div style={{ marginLeft: 'auto', display: 'flex', gap: 16, alignItems: 'center', fontSize: 13, color: 'var(--text-muted)' }}>
-          <span>Up to {tt.inr(maxPrice)} / night</span>
-          <input type="range" min="4000" max="15000" step="500" value={maxPrice} onChange={e => setMaxPrice(+e.target.value)} style={{ width: 140, accentColor: 'var(--ink)' }}/>
-          <select value={sortBy} onChange={e => setSortBy(e.target.value)} style={{ border: '1px solid var(--line-strong)', background: 'transparent', borderRadius: 4, padding: '8px 14px', fontSize: 13 }}>
-            <option>Recommended</option><option>Price</option><option>Rating</option>
+        <div className="tt-search-cell">
+          <span className="lbl">Check out</span>
+          <input type="date" value={checkOut} onChange={e => setCheckOut(e.target.value)}/>
+        </div>
+        <div className="tt-search-cell">
+          <span className="lbl">Guests</span>
+          <select value={guests} onChange={e => setGuests(e.target.value)}>
+            <option>1 guest · 1 room</option>
+            <option>2 guests · 1 room</option>
+            <option>3 guests · 1 room</option>
+            <option>4 guests · 2 rooms</option>
           </select>
         </div>
+        <button className="tt-search-go" onClick={updateSearch}><Ico name="search" size={14}/> Update</button>
       </div>
 
       <div style={{ marginTop: 40, marginBottom: 24, display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-        <h2 className="tt-h3" style={{ margin: 0 }}>{matches.length} stays · {tt.fmtDate(searchCtx?.checkIn)} → {tt.fmtDate(searchCtx?.checkOut)}</h2>
+        <h2 className="tt-h3" style={{ margin: 0 }}>{matches.length} stays · {tt.fmtDate(checkIn)} → {tt.fmtDate(checkOut)}</h2>
         <button className="tt-btn-link"><Ico name="pin" size={14}/> Map view</button>
       </div>
 
@@ -60,7 +63,7 @@ const SearchScreen = ({ go, searchCtx }) => {
             <div style={{ flex: '0 0 380px', position: 'relative', borderRadius: 4, overflow: 'hidden' }}>
               <StripeImg label={p.placeholder} tone={p.tone} ratio="auto"/>
               <div className="tt-card-tags">
-                <span className="tt-tag">{p.city === 'pondicherry' ? 'Pondicherry' : 'Bengaluru'}</span>
+                <span className="tt-tag">{p.city === 'pondicherry' ? 'White Town' : 'Auroville'}</span>
                 <span className="tt-tag tt-tag-dark">★ {p.rating}</span>
               </div>
             </div>
@@ -70,22 +73,22 @@ const SearchScreen = ({ go, searchCtx }) => {
                 <h3 className="tt-h3" style={{ marginTop: 8, marginBottom: 8 }}>{p.name}</h3>
                 <p style={{ color: 'var(--text-soft)', margin: 0, fontSize: 15, lineHeight: 1.55 }}>{p.blurb}</p>
                 <div style={{ display: 'flex', gap: 8, marginTop: 14, flexWrap: 'wrap' }}>
-                  <span className="tt-chip tt-chip-blue" style={{ cursor: 'default' }}>Free cancel · 48h</span>
-                  <span className="tt-chip tt-chip-tonal" style={{ cursor: 'default' }}>Wi-Fi</span>
-                  <span className="tt-chip tt-chip-tonal" style={{ cursor: 'default' }}>Breakfast</span>
+                  {(TT_DATA.rooms[p.id] || [{}])[0]?.amenities?.slice(0, 3).map(a => (
+                    <span key={a} className="tt-chip tt-chip-tonal" style={{ cursor: 'default' }}>{a}</span>
+                  ))}
                 </div>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: 24, paddingTop: 18, borderTop: '1px solid var(--line)' }}>
-                <span className="tt-muted" style={{ fontSize: 13 }}>{tt.nightsBetween(searchCtx?.checkIn, searchCtx?.checkOut) || 3} nights · taxes incl.</span>
+                <span className="tt-muted" style={{ fontSize: 13 }}>{tt.nightsBetween(checkIn, checkOut) || 3} nights · pricing on request</span>
                 <div style={{ textAlign: 'right' }}>
-                  <div style={{ fontSize: 22, fontWeight: 600 }}>{tt.inr(p.from)} <span style={{ fontSize: 14, fontWeight: 400, color: 'var(--text-muted)' }}>/ night</span></div>
-                  <button className="tt-btn tt-btn-primary tt-btn-sm" style={{ marginTop: 8 }}>View rooms <Ico name="arrow" size={14}/></button>
+                  <div style={{ fontSize: 22, fontWeight: 600 }}>{p.from}</div>
+                  <button className="tt-btn tt-btn-primary tt-btn-sm" style={{ marginTop: 8 }}>View stay <Ico name="arrow" size={14}/></button>
                 </div>
               </div>
             </div>
           </div>
         ))}
-        {matches.length === 0 && <div style={{ textAlign: 'center', padding: 80, color: 'var(--text-muted)' }}>No stays match these filters yet. Try widening the budget.</div>}
+        {matches.length === 0 && <div style={{ textAlign: 'center', padding: 80, color: 'var(--text-muted)' }}>No stays found for this location.</div>}
       </div>
     </div>
   );
@@ -105,7 +108,7 @@ const PropertyScreen = ({ go, params, searchCtx, startBooking }) => {
     <div className="tt-page" style={{ paddingTop: 32, paddingBottom: 96 }}>
       <div style={{ display: 'flex', gap: 8, fontSize: 13, color: 'var(--text-muted)', marginBottom: 24 }}>
         <span style={{ cursor: 'pointer' }} onClick={() => go('home')}>Stays</span><span>/</span>
-        <span style={{ cursor: 'pointer' }} onClick={() => go('search')}>{property.city === 'pondicherry' ? 'Pondicherry' : 'Bengaluru'}</span><span>/</span>
+        <span style={{ cursor: 'pointer' }} onClick={() => go('search')}>{property.city === 'pondicherry' ? 'White Town' : 'Auroville'}</span><span>/</span>
         <span style={{ color: 'var(--ink)' }}>{property.name}</span>
       </div>
 
@@ -117,10 +120,6 @@ const PropertyScreen = ({ go, params, searchCtx, startBooking }) => {
             <span style={{ display: 'inline-flex', gap: 6, alignItems: 'center' }}><Ico name="star" size={13}/> {property.rating} · {property.reviews} reviews</span>
             <span>·</span><span style={{ display: 'inline-flex', gap: 6, alignItems: 'center' }}><Ico name="pin" size={14}/> {property.area}</span>
           </div>
-        </div>
-        <div style={{ display: 'flex', gap: 8 }}>
-          <button className="tt-btn tt-btn-ghost tt-btn-sm">Share</button>
-          <button className="tt-btn tt-btn-ghost tt-btn-sm">Save</button>
         </div>
       </div>
 
@@ -138,10 +137,7 @@ const PropertyScreen = ({ go, params, searchCtx, startBooking }) => {
 
       <div className="tt-property-layout" style={{ display: 'grid', gridTemplateColumns: '1.6fr 1fr', gap: 64, marginTop: 64 }}>
         <div>
-          <h2 className="tt-h2" style={{ marginTop: 0 }}>{property.blurb}</h2>
-          <p style={{ color: 'var(--text-soft)', fontSize: 17, lineHeight: 1.6, marginTop: 16 }}>
-            Hosted by Anika &amp; Ravi. Rooms are kept in small numbers — typically two to six per property — so service feels personal. Breakfast is local and seasonal. Check-in any time after 14:00; late arrivals welcome with notice.
-          </p>
+          <p style={{ color: 'var(--text)', fontSize: 17, lineHeight: 1.6, marginTop: 0, fontWeight: 400 }}>{property.blurb}</p>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 20, marginTop: 32 }}>
             {[
@@ -179,8 +175,7 @@ const PropertyScreen = ({ go, params, searchCtx, startBooking }) => {
                 </div>
                 <div style={{ textAlign: 'right' }}>
                   <input type="radio" name="room" checked={selectedRoom === r.id} onChange={() => setSelectedRoom(r.id)} style={{ position: 'absolute', opacity: 0 }}/>
-                  <div style={{ fontSize: 19, fontWeight: 600 }}>{tt.inr(r.price)}</div>
-                  <div className="tt-muted" style={{ fontSize: 12 }}>per night</div>
+                  <div style={{ fontSize: 16, fontWeight: 600 }}>{r.price}</div>
                 </div>
               </label>
             ))}
@@ -211,8 +206,7 @@ const PropertyScreen = ({ go, params, searchCtx, startBooking }) => {
         {/* Sidebar */}
         <div className="tt-property-sidebar">
           <div className="tt-summary">
-            <div style={{ fontSize: 12, color: 'var(--text-muted)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>From</div>
-            <div style={{ fontSize: 32, fontWeight: 700, letterSpacing: '-0.02em', marginTop: 4, color: 'var(--ink)' }}>{tt.inr(room?.price || property.from)}<span style={{ fontSize: 15, fontWeight: 400, color: 'var(--text-muted)' }}> / night</span></div>
+            <div style={{ fontSize: 32, fontWeight: 700, letterSpacing: '-0.02em', marginTop: 4, color: 'var(--ink)' }}>{property.from}</div>
 
             <div style={{ marginTop: 20, border: '1px solid var(--line)', borderRadius: 4, overflow: 'hidden' }}>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
@@ -237,11 +231,7 @@ const PropertyScreen = ({ go, params, searchCtx, startBooking }) => {
             <p className="tt-muted" style={{ fontSize: 12, textAlign: 'center', marginTop: 12 }}>You won&rsquo;t be charged yet · Host approves first</p>
             <hr className="tt-hr"/>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10, fontSize: 14 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}><span className="tt-muted">{tt.inr(room?.price || 0)} × {nights} nights</span><span>{tt.inr((room?.price || 0) * nights)}</span></div>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}><span className="tt-muted">Hosting fee</span><span>{tt.inr(450)}</span></div>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}><span className="tt-muted">Taxes (GST 12%)</span><span>{tt.inr((room?.price || 0) * nights * 0.12)}</span></div>
-              <hr className="tt-hr" style={{ margin: '8px 0' }}/>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 600, fontSize: 16 }}><span>Total (INR)</span><span>{tt.inr((room?.price || 0) * nights * 1.12 + 450)}</span></div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 600, fontSize: 16 }}><span>Pricing</span><span>Request on WhatsApp</span></div>
             </div>
           </div>
         </div>

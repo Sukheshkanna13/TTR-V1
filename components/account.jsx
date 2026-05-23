@@ -217,27 +217,26 @@ const ListPage = ({ eyebrow, title, sub, items }) => (
   </div>
 );
 
-const ExperienceScreen = ({ go }) => <ListPage eyebrow="Experiences" title={<>Curated days, <span className="tt-italic-soft" style={{ color: 'var(--accent)' }}>locally led.</span></>} sub="Pottery in Pondicherry. Yoga at Auroville. Brunch at Bangalore's oldest cafés." items={[
-  {cat:'Pondicherry',t:'Pottery & wheel throwing',d:'Half day in a French quarter studio.',price:'₹2,400',label:'pottery',tone:'oklch(0.85 0.06 60)'},
-  {cat:'Auroville',t:'Sunrise yoga & breakfast',d:'Two hours of yoga, then a slow breakfast.',price:'₹1,500',label:'yoga',tone:'oklch(0.88 0.05 145)'},
-  {cat:'Bengaluru',t:'Heritage breakfast walk',d:'VV Puram by foot, six tasting stops.',price:'₹900',label:'food',tone:'oklch(0.86 0.06 35)'},
-  {cat:'Coast',t:'Catamaran sunset',d:'Local fishermen, bottled water, biscuits.',price:'₹1,800',label:'boat',tone:'oklch(0.85 0.06 215)'},
-  {cat:'Bengaluru',t:'Lalbagh tree walk',d:'A botanist guides a slow loop.',price:'₹600',label:'garden',tone:'oklch(0.87 0.05 145)'},
-  {cat:'Pondicherry',t:'Indo-French dinner',d:'Pop-up at a private home in White Town.',price:'₹3,200',label:'dinner',tone:'oklch(0.84 0.06 30)'},
+const ExperienceScreen = ({ go }) => <ListPage eyebrow="Experiences" title={<>Curated days, <span className="tt-italic-soft" style={{ color: 'var(--accent)' }}>locally led.</span></>} sub="Pottery in Pondicherry. Yoga at Auroville." items={[
+  {cat:'Pondicherry',t:'Pottery & wheel throwing',d:'Half day in a French quarter studio.',price:'Request to book',label:'pottery',tone:'oklch(0.85 0.06 60)'},
+  {cat:'Auroville',t:'Sunrise yoga & breakfast',d:'Two hours of yoga, then a slow breakfast.',price:'Request to book',label:'yoga',tone:'oklch(0.88 0.05 145)'},
+  {cat:'Coast',t:'Catamaran sunset',d:'Local fishermen, bottled water, biscuits.',price:'Request to book',label:'boat',tone:'oklch(0.85 0.06 215)'},
+  {cat:'Pondicherry',t:'Indo-French dinner',d:'Pop-up at a private home in White Town.',price:'Request to book',label:'dinner',tone:'oklch(0.84 0.06 30)'},
 ]}/>;
 window.ExperienceScreen = ExperienceScreen;
 
 const ThingsScreen = ({ go }) => <ListPage eyebrow="Things to do" title={<>Beyond the room.</>} sub="A short list, hand-picked by hosts. Book on the spot or save for later." items={[
-  {cat:'Outdoor',t:'Cycling the East Coast Road',d:'Half-day ride, cycle and helmet included.',price:'₹1,200',label:'cycle',tone:'oklch(0.85 0.06 220)'},
-  {cat:'Wellness',t:'Abhyanga massage',d:'Sixty minutes of warm-oil bliss.',price:'₹3,500',label:'spa',tone:'oklch(0.88 0.04 60)'},
-  {cat:'Crafts',t:'Block-printing class',d:'Take home what you print.',price:'₹2,000',label:'craft',tone:'oklch(0.86 0.06 30)'},
+  {cat:'Outdoor',t:'Cycling the East Coast Road',d:'Half-day ride, cycle and helmet included.',price:'Request to book',label:'cycle',tone:'oklch(0.85 0.06 220)'},
+  {cat:'Wellness',t:'Abhyanga massage',d:'Sixty minutes of warm-oil bliss.',price:'Request to book',label:'spa',tone:'oklch(0.88 0.04 60)'},
+  {cat:'Crafts',t:'Block-printing class',d:'Take home what you print.',price:'Request to book',label:'craft',tone:'oklch(0.86 0.06 30)'},
 ]}/>;
 window.ThingsScreen = ThingsScreen;
 
-const EventsScreen = ({ go }) => <ListPage eyebrow="Events &amp; festivals" title={<>What&rsquo;s on, this season.</>} sub="Concerts, supper clubs, temple festivals. Tied to your stay dates." items={[
-  {cat:'Pondicherry · 14 May',t:'Tamil New Year supper',d:'Ten-course meal, communal table.',price:'₹2,800',label:'feast',tone:'oklch(0.85 0.06 30)'},
-  {cat:'Bengaluru · 22 May',t:'Carnatic at the courtyard',d:'Two-hour concert, doors at 18:00.',price:'₹900',label:'music',tone:'oklch(0.84 0.07 280)'},
-  {cat:'Auroville · 5 Jun',t:'Solstice sound bath',d:'Outdoor, bring a blanket.',price:'Free',label:'sound',tone:'oklch(0.87 0.05 200)'},
+const EventsScreen = ({ go }) => <ListPage eyebrow="Nature Retreat Events" title={<>Meaningful memories.</>} sub="At TempleAndTowns Nature Retreat - enjoy simple, thoughtfully curated experiences that connect you with nature, local culture and the peaceful spirit of Auroville. 🪷" items={[
+  {cat:'Auroville',t:'Experience Local Artisans',d:'Discover the charm of local craftsmanship through simple demonstrations and hands-on workshops. Meet local artisans, explore handmade jewellery, weaving and jute crafts. Take home a little piece of Auroville with you.',price:'Request to book',label:'craft',tone:'oklch(0.85 0.06 30)'},
+  {cat:'Auroville',t:'Garden Fun for Kids',d:'Let the little hands explore nature through simple gardening and outdoor activities. A fun and joyful way for children to play, learn and enjoy the beauty of nature.',price:'Request to book',label:'garden',tone:'oklch(0.84 0.07 145)'},
+  {cat:'Auroville',t:'Poolside Evenings & Summer Fun',d:'Relax, unwind and enjoy refreshing moments by the pool. During special weekends and group stays - guests can enjoy cheerful poolside gatherings, family fun and summer vibes.',price:'Request to book',label:'coastal',tone:'oklch(0.87 0.05 200)'},
+  {cat:'Auroville',t:'Robotics & Creative Tech',d:'Beginner-friendly robotics and creative technology sessions designed for curious young minds. Led by our in-house tech enthusiast - children can explore, build, and learn through hands-on activities.',price:'Request to book',label:'tech',tone:'oklch(0.86 0.05 250)'},
 ]}/>;
 window.EventsScreen = EventsScreen;
 

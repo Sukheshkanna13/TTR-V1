@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Temples & Towns — Stays in Pondicherry & Bengaluru</title>
+<title>Temples & Towns — Stays in Pondicherry & Auroville</title>
 <link rel="stylesheet" href="styles.css"/>
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
@@ -14,6 +14,7 @@
 <script type="text/babel" src="components/search.jsx"></script>
 <script type="text/babel" src="components/booking.jsx"></script>
 <script type="text/babel" src="components/account.jsx"></script>
+<script type="text/babel" src="components/retreat.jsx"></script>
 <script type="text/babel" src="tweaks-panel.jsx"></script>
 </head>
 <body>
@@ -63,12 +64,13 @@ function App() {
       <Navbar screen={screen} go={go}/>
       <main>
         {screen === 'home'     && <HomeScreen go={go} setSearchCtx={setSearchCtx}/>}
-        {screen === 'search'   && <SearchScreen go={go} searchCtx={searchCtx}/>}
+        {screen === 'search'   && <SearchScreen go={go} searchCtx={searchCtx} setSearchCtx={setSearchCtx}/>}
         {screen === 'property' && <PropertyScreen go={go} params={params} searchCtx={searchCtx} startBooking={startBooking}/>}
         {screen === 'book'     && pendingBookCtx && <BookingWizard go={go} ctx={{...pendingBookCtx, ...searchCtx}} onSubmit={submitBookingRequest}/>}
         {screen === 'wa-sent'  && <WhatsAppSentScreen go={go} booking={activeBooking}/>}
         {screen === 'loyalty'  && <LoyaltyScreen go={go}/>}
         {screen === 'things'   && <ThingsScreen go={go}/>}
+        {screen === 'retreat'  && <NatureRetreatScreen go={go}/>}
         {screen === 'events'   && <EventsScreen go={go}/>}
       </main>
       <Footer/>

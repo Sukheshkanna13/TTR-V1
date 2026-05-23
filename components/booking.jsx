@@ -12,7 +12,6 @@ const buildWaMessage = ({ property, room, checkIn, checkOut, guests, nights, gue
   `Email: ${guest.email}`,
   `Expected arrival: ${guest.arrival}`,
   guest.requests ? `Special requests: ${guest.requests}` : null,
-  `Estimated total: ${tt.inr(total)}`,
 ].filter(Boolean).join('\n');
 
 // ---------- BOOKING WIZARD ----------
@@ -26,15 +25,12 @@ const BookingWizard = ({ go, ctx, onSubmit }) => {
   const [agree, setAgree]             = useState(false);
 
   const nights   = tt.nightsBetween(ctx.checkIn, ctx.checkOut) || 3;
-  const subtotal = (ctx.room?.price || 0) * nights;
-  const tax      = subtotal * 0.12;
-  const total    = subtotal + tax + 450;
   const labels   = ['Trip details', 'About you', 'Review & request'];
 
   const next = () => {
     if (step < 2) { setStep(s => s + 1); return; }
     const guest = { name: guestName || 'Guest', email: guestEmail, phone: guestPhone, arrival, requests };
-    const ctx2  = { ...ctx, guest, total, nights };
+    const ctx2  = { ...ctx, guest, nights };
     const msg   = buildWaMessage(ctx2);
     window.open(`https://wa.me/918553441449?text=${encodeURIComponent(msg)}`, '_blank', 'noopener,noreferrer');
     onSubmit(ctx2);
@@ -141,15 +137,10 @@ const BookingWizard = ({ go, ctx, onSubmit }) => {
             <div className="tt-eyebrow">Summary</div>
             <div style={{ marginTop: 16, fontWeight: 600, fontSize: 17 }}>{ctx.property.name}</div>
             <div className="tt-muted" style={{ fontSize: 13, marginTop: 2 }}>{ctx.room?.type}</div>
-            <hr className="tt-hr"/>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8, fontSize: 14 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}><span className="tt-muted">{tt.inr(ctx.room?.price)} × {nights} nights</span><span>{tt.inr(subtotal)}</span></div>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}><span className="tt-muted">Hosting fee</span><span>{tt.inr(450)}</span></div>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}><span className="tt-muted">GST 12%</span><span>{tt.inr(tax)}</span></div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 600 }}><span>Pricing</span><span>Request on WhatsApp</span></div>
             </div>
-            <hr className="tt-hr"/>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 600, fontSize: 18 }}><span>Total</span><span>{tt.inr(total)}</span></div>
-            <p className="tt-muted" style={{ fontSize: 12, marginTop: 12 }}>Confirmed and payment arranged via WhatsApp with our team.</p>
+            <p className="tt-muted" style={{ fontSize: 12, marginTop: 12 }}>Availability and payment will be arranged via WhatsApp with our team.</p>
           </div>
         </aside>
       </div>

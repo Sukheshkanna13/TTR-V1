@@ -56,7 +56,7 @@ const HomeScreen = ({ go, setSearchCtx }) => {
           </div>
         </div>
 
-        {/* FULL-WIDTH SEARCH BAR — below both columns, edge to edge */}
+        {/* FULL-WIDTH SEARCH BAR */}
         <div style={{ marginTop: 40, borderTop: '1px solid var(--line)' }}>
           <div className="tt-search" style={{
             borderRadius: 0,
@@ -68,7 +68,7 @@ const HomeScreen = ({ go, setSearchCtx }) => {
               <span className="lbl">Where</span>
               <select value={city} onChange={e => setCity(e.target.value)}>
                 <option>Pondicherry</option>
-                <option>Bengaluru</option>
+                <option>Auroville</option>
                 <option>Both cities</option>
               </select>
             </div>
@@ -108,12 +108,12 @@ const HomeScreen = ({ go, setSearchCtx }) => {
           </div>
           <div className="tt-moments-grid">
             {[
-              {label:'pottery',          cap:'Pottery, Pondicherry'},
+              {label:'pottery',          cap:'Pottery, Auroville'},
               {label:'temple-courtyard', cap:'Sandalwood courtyards'},
               {label:'sea-evening',      cap:'Promenade, dusk'},
-              {label:'street-food',      cap:'VV Puram lights'},
+              {label:'street-food',      cap:'White Town evenings'},
               {label:'morning-yoga',     cap:'Yoga at Auroville'},
-              {label:'banyan-tree',      cap:'Banyan, Lalbagh'},
+              {label:'banyan-tree',      cap:'Nature walks'},
             ].map(m => (
               <div key={m.label} className="tt-moment">
                 <img src={`images/${m.label}.png`} alt={m.cap} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
@@ -139,9 +139,9 @@ const HomeScreen = ({ go, setSearchCtx }) => {
             </div>
             <div className="tt-journey-grid">
               {[
-                {cat:'Temple', title:'Somnath Jyotirlinga', loc:'Gujarat',  label:'temple'},
-                {cat:'Resort', title:'Goa coastal retreat', loc:'Goa',      label:'coastal'},
-                {cat:'Nature', title:'Kerala backwaters',   loc:'Kerala',   label:'nature'},
+                {cat:'Retreat', title:'Auroville Nature', loc:'Auroville',  label:'nature'},
+                {cat:'Heritage', title:'White Town walk', loc:'Pondicherry',      label:'coastal'},
+                {cat:'Culture', title:'Local Artisans',   loc:'Auroville',   label:'temple'},
               ].map(j => (
                 <div key={j.title} className="tt-journey">
                   <img src={`images/${j.label}.png`} alt={j.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
@@ -175,14 +175,14 @@ const HomeScreen = ({ go, setSearchCtx }) => {
                 <div className="tt-card-media">
                   <img src={`images/${p.id}.png`} alt={p.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                   <div className="tt-card-tags">
-                    <span className="tt-tag">{p.city === 'pondicherry' ? 'Pondicherry' : 'Bengaluru'}</span>
+                    <span className="tt-tag">{p.city === 'pondicherry' ? 'White Town' : 'Auroville'}</span>
                     <span className="tt-tag tt-tag-dark">★ {p.rating}</span>
                   </div>
                 </div>
                 <div className="tt-card-body">
                   <div className="tt-card-row">
                     <span className="tt-card-name">{p.name}</span>
-                    <span className="tt-card-price">{tt.inr(p.from)} <small>/ night</small></span>
+                    <span className="tt-card-price">{p.from}</span>
                   </div>
                   <div className="tt-card-area">{p.area}</div>
                   <div className="tt-card-blurb">{p.blurb}</div>
@@ -209,7 +209,7 @@ const HomeScreen = ({ go, setSearchCtx }) => {
                 {[
                   { n: '01', t: 'You request', d: 'Pick dates and submit. We hold the room for ten minutes while we route your request to the host.' },
                   { n: '02', t: 'Host approves', d: 'A real person reviews and either approves or proposes alternatives — usually within an hour.' },
-                  { n: '03', t: 'You pay & arrive', d: 'A secure payment link arrives by email. Pay in two hours, receive your confirmation, pack your bag.' },
+                  { n: '03', t: 'You pay & arrive', d: 'A secure payment link arrives via WhatsApp. Confirm your booking, receive check-in details, and pack your bag.' },
                 ].map(s => (
                   <div key={s.n} style={{ borderTop: '1px solid var(--ink)', paddingTop: 20 }}>
                     <div style={{ fontFamily: 'Instrument Serif, Georgia, serif', fontSize: 32, fontStyle: 'italic', color: 'var(--accent)' }}>{s.n}</div>
