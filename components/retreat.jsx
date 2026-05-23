@@ -4,6 +4,24 @@ const NatureRetreatScreen = ({ go }) => {
   const property = TT_DATA.properties.find(p => p.id === 'p4');
   const galleryImgs = (property?.images || []).slice(0, 8);
 
+  const experiences = [
+    {
+      title: 'Experience Local Artisans',
+      desc: 'Discover the charm of local craftsmanship through simple demonstrations and hands-on workshops. Meet local artisans, explore handmade jewellery, weaving and jute crafts.',
+      img: 'images/Natures-retreat/1.jpeg'
+    },
+    {
+      title: 'Garden Fun for Kids',
+      desc: 'Let the little hands explore nature through simple gardening and outdoor activities. A fun and joyful way for children to play, learn and enjoy the beauty of nature.',
+      img: 'images/Natures-retreat/2.jpeg'
+    },
+    {
+      title: 'Poolside Evenings & Summer Fun',
+      desc: 'Relax, unwind and enjoy refreshing moments by the pool. During special weekends and group stays — cheerful poolside gatherings and summer vibes.',
+      img: 'images/Natures-retreat/3.jpeg'
+    },
+  ];
+
   return (
     <div className="tt-page" style={{ paddingTop: 32, paddingBottom: 96 }}>
       <div style={{ display: 'flex', gap: 8, fontSize: 13, color: 'var(--text-muted)', marginBottom: 24 }}>
@@ -48,6 +66,24 @@ const NatureRetreatScreen = ({ go }) => {
               <div>
                 <div style={{ fontWeight: 600, fontSize: 15 }}>{h.title}</div>
                 <div className="tt-muted" style={{ fontSize: 13, marginTop: 4 }}>{h.desc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Experiences with Natures-retreat images */}
+      <div style={{ maxWidth: 800, margin: '0 auto', marginBottom: 64 }}>
+        <h2 className="tt-h2" style={{ textAlign: 'center', marginBottom: 40 }}>Life at the retreat</h2>
+        <div style={{ display: 'grid', gap: 48 }}>
+          {experiences.map((exp, i) => (
+            <div key={exp.title} style={{ display: 'flex', gap: 32, alignItems: 'center', flexDirection: i % 2 === 0 ? 'row' : 'row-reverse' }}>
+              <div style={{ flex: 1, height: 280, borderRadius: 8, overflow: 'hidden' }}>
+                <img src={exp.img} alt={exp.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
+              <div style={{ flex: 1, padding: 16 }}>
+                <h3 className="tt-h3" style={{ marginBottom: 12 }}>{exp.title}</h3>
+                <p className="tt-muted" style={{ fontSize: 16, lineHeight: 1.6 }}>{exp.desc}</p>
               </div>
             </div>
           ))}
